@@ -9,6 +9,7 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
+import { RoundedButton } from "./RoundedButton.jsx";
 
 const navigation = [
   { name: "Services", href: "services", current: true },
@@ -82,12 +83,7 @@ export default function Navbar() {
 
             {/* Profile dropdown */}
             {true ? (
-              <button
-                class="ml-3 align-middle select-none font-primary font-medium text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-sm py-2 px-6 bg-primary text-white shadow-md shadow-secondary/10 hover:shadow-lg hover:shadow-secondary/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none rounded-full"
-                type="button"
-              >
-                Sign In
-              </button>
+              <RoundedButton text={"Sign in"} />
             ) : (
               <Menu as="div" className="relative ml-3">
                 <div>
