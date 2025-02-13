@@ -24,8 +24,8 @@ function classNames(...classes) {
 
 export default function Navbar() {
   return (
-    <Disclosure as="nav" className="bg-white shadow py-4">
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-0">
+    <Disclosure as="nav" className="bg-white shadow-2xs py-4 z-20 sticky top-0">
+      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-0 ">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button*/}
@@ -83,7 +83,7 @@ export default function Navbar() {
 
             {/* Profile dropdown */}
             {true ? (
-              <RoundedButton text={"Sign in"} />
+              <RoundedButton text={"Sign in"} bgColor={"primary"} />
             ) : (
               <Menu as="div" className="relative ml-3">
                 <div>
