@@ -5,7 +5,7 @@ import { LuMouse } from "react-icons/lu";
 export default function Hero() {
   return (
     <div className="relative min-h-[100vh] overflow-hidden">
-      <div class="absolute bg-white/30 backdrop-blur-2xl z-10 h-[100vh] w-[100vw]"></div>
+      <div className="absolute bg-white/30 backdrop-blur-2xl z-10 h-[100vh] w-[100vw]"></div>
       <div className="w-40 h-40 bg-red-500 rounded-full absolute top-44 left-[70%]"></div>
       <div className="w-40 h-40 bg-blue-500 rounded-full absolute top-40  left-[20%]"></div>
       <div className="w-40 h-40 bg-yellow-500 rounded-full absolute top-[60%] left-[20%]"></div>
