@@ -1,5 +1,5 @@
 import React from "react";
-import logoObj from "../../utilities/svgs";
+import SvgsObj from "../../utilities/svgs";
 import Marquee from "react-fast-marquee";
 
 export default function Brands() {
@@ -18,23 +18,33 @@ export default function Brands() {
         </p>
       </div>
       <Marquee autoFill={true} direction="left">
-        <logoObj.Logo5 className="h-30 w-36 mx-12 " />
+        <SvgsObj.Logo5 className="h-30 w-36 mx-12 " />
 
-        <logoObj.Logo6 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo6 className="h-30 w-36 mx-12" />
 
-        <logoObj.Logo7 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo7 className="h-30 w-36 mx-12" />
 
-        <logoObj.Logo8 className="h-30 w-36 mx-12" />
-        <logoObj.Logo9 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo8 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo9 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo19 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo18 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo17 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo16 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo15 className="h-30 w-36 mx-12" />
       </Marquee>
       <Marquee autoFill={true} direction="right">
-        <logoObj.Logo1 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo1 className="h-30 w-36 mx-12" />
 
-        <logoObj.Logo2 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo2 className="h-30 w-36 mx-12" />
 
-        <logoObj.Logo3 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo3 className="h-30 w-36 mx-12" />
 
-        <logoObj.Logo4 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo4 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo10 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo11 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo12 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo13 className="h-30 w-36 mx-12" />
+        <SvgsObj.Logo14 className="h-30 w-36 mx-12" />
       </Marquee>
     </div>
   );

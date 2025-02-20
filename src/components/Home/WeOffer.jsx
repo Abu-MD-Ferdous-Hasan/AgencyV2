@@ -1,62 +1,85 @@
+import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
+import {
+  ChatBubbleLeftEllipsisIcon,
+  DevicePhoneMobileIcon,
+  GlobeAltIcon,
+  MegaphoneIcon,
+  WrenchScrewdriverIcon,
+} from "@heroicons/react/24/outline";
 import React from "react";
+import ServiceCards from "./ServiceCards";
 
 export default function WeOffer() {
+  const services = [
+    {
+      icon: <ChatBubbleLeftEllipsisIcon className="h-8 w-8" />,
+      serviceName: "Social Content",
+      description:
+        "This is a wider card with supporting text below as a natural content.",
+    },
+    {
+      icon: <GlobeAltIcon className="h-8 w-8" />,
+      serviceName: "Web development",
+      description:
+        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam, similique nulla!",
+    },
+    {
+      icon: <DevicePhoneMobileIcon className="h-8 w-8" />,
+      serviceName: "Mobile App",
+      description:
+        "This is a wider card with supporting text below as a natural content.",
+    },
+    {
+      icon: <MagnifyingGlassIcon className="h-8 w-8" />,
+      serviceName: "SEO",
+      description:
+        "This is a wider card with supporting text below as a natural content.",
+    },
+    {
+      icon: <WrenchScrewdriverIcon className="w-8 h-8" />,
+      serviceName: "User testing",
+      description:
+        "This is a wider card with supporting text below as a natural content.",
+    },
+    {
+      icon: <MegaphoneIcon className="h-8 w-8" />,
+      serviceName: "Digital Marketing",
+      description:
+        "This is a wider card with supporting text below as a natural content.",
+    },
+  ];
   return (
     <>
-      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 bg-primary lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-            We Offer
-          </h2>
-
-          <p className="mt-4 font-agrandir text-gray-500 sm:text-lg">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-            dolores laborum labore provident impedit esse recusandae facere
-            libero harum sequi.
-          </p>
+      <div
+        id="services"
+        class="relative pt-20 pb-8 md:pb-20 md:pt-16 bg-primary"
+      >
+        <div class="container xl:max-w-6xl mx-auto">
+          {/* <!-- Heading start --> */}
+          <header class="text-center mx-auto mb-12 lg:px-20">
+            <h2 class="text-4xl font-primary leading-normal mb-2 font-semibold text-bgColor">
+              What We Do
+            </h2>
+            <p class="text-gray-200 leading-relaxed font-light text-xl mx-auto pb-2">
+              Save time managing advertising &amp; Content for your business.
+            </p>
+          </header>
+          {/* <!-- End heading --> */}
+          {/* <!-- row --> */}
+          <div class="grid grid-cols-3 gap-2 w-full">
+            {services.map((elm, idx) => {
+              return (
+                <ServiceCards
+                  key={elm.serviceName + idx}
+                  serviceName={elm?.serviceName}
+                  icon={elm?.icon}
+                  description={elm?.description}
+                />
+              );
+            })}
+          </div>
+          {/* <!-- end row --> */}
         </div>
-
-        <dl className="mt-6 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
-            <dt className="order-last text-lg font-medium text-gray-500">
-              Total Sales
-            </dt>
-
-            <dd className="text-4xl font-extrabold text-blue-600 md:text-5xl">
-              $4.8m
-            </dd>
-          </div>
-
-          <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
-            <dt className="order-last text-lg font-medium text-gray-500">
-              Official Addons
-            </dt>
-
-            <dd className="text-4xl font-extrabold text-blue-600 md:text-5xl">
-              24
-            </dd>
-          </div>
-
-          <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
-            <dt className="order-last text-lg font-medium text-gray-500">
-              Total Addons
-            </dt>
-
-            <dd className="text-4xl font-extrabold text-blue-600 md:text-5xl">
-              86
-            </dd>
-          </div>
-
-          <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
-            <dt className="order-last text-lg font-medium text-gray-500">
-              Downloads
-            </dt>
-
-            <dd className="text-4xl font-extrabold text-blue-600 md:text-5xl">
-              86k
-            </dd>
-          </div>
-        </dl>
       </div>
     </>
   );
