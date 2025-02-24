@@ -11,19 +11,19 @@ export default function Faq() {
   return (
     <>
       {/* component  */}
-      <section class="text-gray-700">
-        <div class="container px-5 py-24 mx-auto">
-          <div class="text-center mb-20">
-            <h1 class="sm:text-5xl text-2xl font-primary font-semibold text-center title-font text-secondary mb-4">
+      <section className="text-gray-700">
+        <div className="container px-5 py-24 mx-auto">
+          <div className="text-center mb-20">
+            <h1 className="sm:text-5xl text-2xl font-primary font-semibold text-center title-font text-secondary mb-4">
               Frequently Asked Question
             </h1>
-            <p class="font-medium text-lg text-gray-500 leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
+            <p className="font-medium text-lg text-gray-500 leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
               The most common questions about how our business works and what
               can do for you.
             </p>
           </div>
-          <div class="flex flex-col items-center justify-center gap-5 lg:w-full sm:mx-auto sm:mb-2 -mx-2">
-            {/* <div class="w-full lg:w-1/2  px-4 py-2"> */}
+          <div className="flex flex-col items-center justify-center gap-5 lg:w-full sm:mx-auto sm:mb-2 -mx-2">
+            {/* <div className="w-full lg:w-1/2  px-4 py-2"> */}
             {/* <Transition transition={true}> */}
             <Disclosure
               as="div"
@@ -162,35 +162,35 @@ export default function Faq() {
             </Disclosure>
             {/* </Transition> */}
             {/* </div>
-            <div class="w-full lg:w-1/2 px-4 py-2">
-              <details class="mb-4">
-                <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+            <div className="w-full lg:w-1/2 px-4 py-2">
+              <details className="mb-4">
+                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
                   Can I change the domain you give me?
                 </summary>
 
-                <span class="px-4 py-2 duration-300 ease-in-out">
+                <span className="px-4 py-2 duration-300 ease-in-out">
                   Laboris qui labore cillum culpa in sunt quis sint veniam.
                   Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
                   minim velit nostrud pariatur culpa magna in aute.
                 </span>
               </details>
-              <details class="mb-4 duration-300 ease-in-out">
-                <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+              <details className="mb-4 duration-300 ease-in-out">
+                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
                   How many sites I can create at once?
                 </summary>
 
-                <span class="px-4 py-2 duration-300 ease-in-out">
+                <span className="px-4 py-2 duration-300 ease-in-out">
                   Laboris qui labore cillum culpa in sunt quis sint veniam.
                   Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
                   minim velit nostrud pariatur culpa magna in aute.
                 </span>
               </details>
-              <details class="mb-4 duration-300 ease-in-out">
-                <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+              <details className="mb-4 duration-300 ease-in-out">
+                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
                   How can I communicate with you?
                 </summary>
 
-                <span class="px-4 py-2 duration-300 ease-in-out">
+                <span className="px-4 py-2 duration-300 ease-in-out">
                   Laboris qui labore cillum culpa in sunt quis sint veniam.
                   Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
                   minim velit nostrud pariatur culpa magna in aute.

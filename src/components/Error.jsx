@@ -16,16 +16,16 @@ export default function Error() {
   return (
     <section className="my-30 h-screen flex flex-col items-center justify-center cur">
       <img src={ErrorPicture} alt="" />
-      <div class="flex flex-col items-center justify-center">
-        <p class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-wider text-gray-600 mt-24 mb-7">
+      <div className="flex flex-col items-center justify-center">
+        <p className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-wider text-gray-600 mt-24 mb-7">
           Oops!
         </p>
-        <p class="font-primary md:text-2xl xl:text-xl text-gray-500 mt-4">
+        <p className="font-primary md:text-2xl xl:text-xl text-gray-500 mt-4">
           We can’t seem to find the page you are looking for
         </p>
         <div className="flex justify-center items-center gap-12 mt-14">
           <RoundedButton
-            customStyle={"font-bold text-xl leading-7"}
+            customStyle={"font-bold text-xl leading-7 text-white"}
             bgColor={"primary"}
             text={<Link to={"/"}>Back to Homepage</Link>}
           />
@@ -33,7 +33,7 @@ export default function Error() {
         </div>
         <div className="my-30 flex flex-col items-center">
           <span className="font-primary text-lg">Follow us on</span>
-          <div class="flex justify-center gap-3 md:gap-10 my-15">
+          <div className="flex justify-center gap-3 md:gap-10 my-15">
             <RiInstagramFill className={styles} />
             <FaFacebookF className={styles} />
             <FaLinkedinIn className={styles} />

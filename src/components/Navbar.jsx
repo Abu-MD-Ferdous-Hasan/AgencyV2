@@ -8,7 +8,7 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { RoundedButton } from "./RoundedButton.jsx";
 
 const navigation = [
@@ -43,13 +43,13 @@ export default function Navbar() {
             </DisclosureButton>
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
-            <div className="flex shrink-0 items-center">
+            <Link to={"/"} className="flex shrink-0 items-center">
               <img
                 alt="Your Company"
                 src="src\assets\logo.png"
                 className="h-20 w-20 object-cover"
               />
-            </div>
+            </Link>
             <div className="hidden sm:flex sm:ml-6  items-center">
               <div className="flex space-x-4 items-center">
                 {navigation.map((item) => (
@@ -83,7 +83,11 @@ export default function Navbar() {
 
             {/* Profile dropdown */}
             {true ? (
-              <RoundedButton text={"Sign in"} bgColor={"primary"} />
+              <RoundedButton
+                text={"Sign in"}
+                bgColor={"primary"}
+                customStyle={"text-white"}
+              />
             ) : (
               <Menu as="div" className="relative ml-3">
                 <div>

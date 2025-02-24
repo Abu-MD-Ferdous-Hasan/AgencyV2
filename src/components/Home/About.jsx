@@ -20,7 +20,7 @@ export default function About() {
             <RoundedButton
               text={"About Us"}
               bgColor={"primary"}
-              customStyle={"mt-[175px]"}
+              customStyle={"mt-[175px] text-white"}
             />
           </div>
         </div>
