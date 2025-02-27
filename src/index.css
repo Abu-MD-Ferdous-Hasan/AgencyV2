@@ -16,6 +16,11 @@
   font-family: Agrandir-widelight;
   src: url("../src/assets/fonts/Agrandir/Agrandir-GrandLight.otf");
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 @theme {
   --color-primary: #6d5f4f;
   --color-secondary: #23273a;

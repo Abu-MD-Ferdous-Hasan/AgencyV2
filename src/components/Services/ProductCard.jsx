@@ -17,9 +17,7 @@ export default function ProductCard({
       import(`@heroicons/react/24/solid`)
         .then((module) => {
           const ImportedIcon = module[productIcon];
-          if (ImportedIcon) {
-            setIconComponent(() => ImportedIcon); // Ensure it is a valid React component
-          }
+          if (ImportedIcon) setIconComponent(() => ImportedIcon);
         })
         .catch((err) => {
           console.error("Icon not found:", err);

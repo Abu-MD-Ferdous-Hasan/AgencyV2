@@ -12,10 +12,10 @@ import { Link, NavLink } from "react-router-dom";
 import { RoundedButton } from "./RoundedButton.jsx";
 
 const navigation = [
-  { name: "Services", href: "services", current: true },
-  { name: "Portfolio", href: "portfolio", current: false },
-  { name: "About Us", href: "about-us", current: false },
-  { name: "Testimonials", href: "testimonials", current: false },
+  { name: "Services", href: "services" },
+  { name: "Portfolio", href: "portfolio" },
+  { name: "About Us", href: "about-us" },
+  { name: "Testimonials", href: "testimonials" },
 ];
 
 function classNames(...classes) {
@@ -27,8 +27,8 @@ export default function Navbar() {
     <Disclosure as="nav" className="bg-white shadow-2xs py-4 z-20 sticky top-0">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-0 ">
         <div className="relative flex h-16 items-center justify-between">
+          {/* Mobile menu start*/}
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-            {/* Mobile menu button*/}
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
@@ -42,6 +42,8 @@ export default function Navbar() {
               />
             </DisclosureButton>
           </div>
+          {/* Mobile menu end*/}
+          {/* logo */}
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
             <Link to={"/"} className="flex shrink-0 items-center">
               <img
@@ -50,7 +52,9 @@ export default function Navbar() {
                 className="h-20 w-20 object-cover"
               />
             </Link>
-            <div className="hidden sm:flex sm:ml-6  items-center">
+            {/* Desktop menu start */}
+
+            <div className="hidden w-full sm:flex sm:ml-6 justify-center items-center">
               <div className="flex space-x-4 items-center">
                 {navigation.map((item) => (
                   <NavLink
@@ -59,8 +63,8 @@ export default function Navbar() {
                     aria-current={item.current ? "page" : undefined}
                     className={({ isActive }) =>
                       isActive
-                        ? " font-primary rounded-md border-2 border-secondary px-3 py-2 text-sm font-medium bg-white"
-                        : " font-primary text-secondary hover:bg-primary hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                        ? "font-primary rounded-md outline-1 outline-black px-3 py-2 text-sm font-medium bg-white box-border"
+                        : "font-primary rounded-md outline-1 outline-white px-3 py-2 text-sm font-medium text-secondary hover:bg-primary hover:text-white box-border"
                     }
                   >
                     {item.name}
@@ -68,28 +72,38 @@ export default function Navbar() {
                 ))}
               </div>
             </div>
+            {/* Desktop menu end */}
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            {true ? null : (
+            {/* {true ? null : (
               <button
                 type="button"
-                className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
+                className="relative rounded-full bg-primary p-1 text-white/80 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary focus:outline-hidden"
               >
                 <span className="absolute -inset-1.5" />
                 <span className="sr-only">View notifications</span>
                 <BellIcon aria-hidden="true" className="size-6" />
               </button>
-            )}
+            )} */}
 
             {/* Profile dropdown */}
             {true ? (
-              <RoundedButton
-                text={"Sign in"}
-                bgColor={"primary"}
-                customStyle={"text-white"}
-              />
+              <>
+                <Link
+                  to={"sign-in"}
+                  className="font-primary text-secondary hover:text-primary rounded-md px-4 py-3 text-sm font-medium cursor-pointer mr-3"
+                >
+                  Sign In
+                </Link>
+                <RoundedButton
+                  text={"Register"}
+                  bgColor={"primary"}
+                  customStyle={"text-white"}
+                />
+              </>
             ) : (
-              <Menu as="div" className="relative ml-3">
+              <>
+                {/* <Menu as="div" className="relative ml-3">
                 <div>
                   <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
                     <span className="absolute -inset-1.5" />
@@ -130,7 +144,8 @@ export default function Navbar() {
                     </a>
                   </MenuItem>
                 </MenuItems>
-              </Menu>
+              </Menu> */}
+              </>
             )}
           </div>
         </div>

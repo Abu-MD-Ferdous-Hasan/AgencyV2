@@ -6,6 +6,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -31,9 +32,15 @@ export default function Footer() {
             &copy; AgencyV2 {currentYear}
           </p>
           <div className="order-1 md:order-2">
-            <span className="px-2">About us</span>
-            <span className="px-2 border-l">Contact us</span>
-            <span className="px-2 border-l">Privacy Policy</span>
+            <Link to={"/about-us"} className="px-2">
+              About us
+            </Link>
+            <Link to={""} className="px-2 border-l">
+              Contact us
+            </Link>
+            <Link to={""} className="px-2 border-l">
+              Privacy Policy
+            </Link>
           </div>
         </div>
       </div>

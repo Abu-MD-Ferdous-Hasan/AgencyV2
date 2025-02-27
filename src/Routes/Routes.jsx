@@ -6,6 +6,7 @@ import Services from "../components/Services/Services";
 import AboutUs from "../components/About Us/AboutUs";
 import TestimonialsPage from "../components/Testimonials/TestimonialPage";
 import Portfolio from "../components/Portfolio/Portfolio";
+import SignIn from "../components/Sign In/SignIn";
 
 export const routes = createBrowserRouter([
   {
@@ -19,7 +20,9 @@ export const routes = createBrowserRouter([
       { path: "about-us", element: <AboutUs /> },
       { path: "testimonials", element: <TestimonialsPage /> },
       ,
+      ,
     ],
   },
   { path: "*", element: <Error /> },
+  { path: "sign-in", element: <SignIn /> },
 ]);

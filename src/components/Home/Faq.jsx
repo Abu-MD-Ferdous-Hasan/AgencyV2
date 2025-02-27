@@ -25,141 +25,38 @@ export default function Faq() {
           <div className="flex flex-col items-center justify-center gap-5 lg:w-full sm:mx-auto sm:mb-2 -mx-2">
             {/* <div className="w-full lg:w-1/2  px-4 py-2"> */}
             {/* <Transition transition={true}> */}
-            <Disclosure
-              as="div"
-              className="p-6 bg-primary/50 rounded-2xl w-2/3"
-            >
-              <DisclosureButton className="group flex w-full items-center justify-between">
-                <span className="text-sm/6 font-medium text-white group-data-[hover]:text-primary">
-                  What is your refund policy?
-                </span>
-                <ChevronDownIcon className="size-5 fill-primary/60 group-data-[hover]:fill-black/50 group-data-[open]:rotate-180" />
-              </DisclosureButton>
-              <DisclosurePanel className="mt-2 h-52 text-sm/5 text-black/50">
-                If you're unhappy with your purchase, we'll refund you in full.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Officiis ducimus quis, cum quod esse sunt veniam illo adipisci
-                earum sint ipsa, commodi soluta voluptatibus voluptate veritatis
-                aspernatur placeat cumque labore architecto maiores facere
-                vitae. Delectus, inventore et, totam neque, sed beatae optio
-                nihil ducimus placeat est asperiores. Rerum earum eum quaerat
-                ducimus obcaecati assumenda eligendi fugit et explicabo autem
-                sapiente voluptatibus id esse inventore voluptates libero
-                distinctio, ab modi ex optio, fugiat aspernatur doloremque
-                dolorem! Ducimus tempore deleniti facilis dolores necessitatibus
-                explicabo, voluptate aliquam sit dolorem omnis quibusdam libero
-                voluptas. Placeat tenetur veritatis esse itaque minima
-                voluptates rem ipsa maxime?
-              </DisclosurePanel>
-            </Disclosure>
-            <Disclosure
-              as="div"
-              className="p-6 bg-primary/50 rounded-2xl w-2/3"
-            >
-              <DisclosureButton className="group flex w-full items-center justify-between">
-                <span className="text-sm/6 font-medium text-white group-data-[hover]:text-primary">
-                  What is your refund policy?
-                </span>
-                <ChevronDownIcon className="size-5 fill-primary/60 group-data-[hover]:fill-black/50 group-data-[open]:rotate-180" />
-              </DisclosureButton>
-              <DisclosurePanel className="mt-2 h-52 text-sm/5 text-black/50">
-                If you're unhappy with your purchase, we'll refund you in full.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Officiis ducimus quis, cum quod esse sunt veniam illo adipisci
-                earum sint ipsa, commodi soluta voluptatibus voluptate veritatis
-                aspernatur placeat cumque labore architecto maiores facere
-                vitae. Delectus, inventore et, totam neque, sed beatae optio
-                nihil ducimus placeat est asperiores. Rerum earum eum quaerat
-                ducimus obcaecati assumenda eligendi fugit et explicabo autem
-                sapiente voluptatibus id esse inventore voluptates libero
-                distinctio, ab modi ex optio, fugiat aspernatur doloremque
-                dolorem! Ducimus tempore deleniti facilis dolores necessitatibus
-                explicabo, voluptate aliquam sit dolorem omnis quibusdam libero
-                voluptas. Placeat tenetur veritatis esse itaque minima
-                voluptates rem ipsa maxime?
-              </DisclosurePanel>
-            </Disclosure>
-            <Disclosure
-              as="div"
-              className="p-6 bg-primary/50 rounded-2xl w-2/3"
-            >
-              <DisclosureButton className="group flex w-full items-center justify-between">
-                <span className="text-sm/6 font-medium text-white group-data-[hover]:text-primary">
-                  What is your refund policy?
-                </span>
-                <ChevronDownIcon className="size-5 fill-primary/60 group-data-[hover]:fill-black/50 group-data-[open]:rotate-180" />
-              </DisclosureButton>
-              <DisclosurePanel className="mt-2 h-52 text-sm/5 text-black/50">
-                If you're unhappy with your purchase, we'll refund you in full.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Officiis ducimus quis, cum quod esse sunt veniam illo adipisci
-                earum sint ipsa, commodi soluta voluptatibus voluptate veritatis
-                aspernatur placeat cumque labore architecto maiores facere
-                vitae. Delectus, inventore et, totam neque, sed beatae optio
-                nihil ducimus placeat est asperiores. Rerum earum eum quaerat
-                ducimus obcaecati assumenda eligendi fugit et explicabo autem
-                sapiente voluptatibus id esse inventore voluptates libero
-                distinctio, ab modi ex optio, fugiat aspernatur doloremque
-                dolorem! Ducimus tempore deleniti facilis dolores necessitatibus
-                explicabo, voluptate aliquam sit dolorem omnis quibusdam libero
-                voluptas. Placeat tenetur veritatis esse itaque minima
-                voluptates rem ipsa maxime?
-              </DisclosurePanel>
-            </Disclosure>
-            <Disclosure
-              as="div"
-              className="p-6 bg-primary/50 rounded-2xl w-2/3"
-            >
-              <DisclosureButton className="group flex w-full items-center justify-between">
-                <span className="text-sm/6 font-medium text-white group-data-[hover]:text-primary">
-                  What is your refund policy?
-                </span>
-                <ChevronDownIcon className="size-5 fill-primary/60 group-data-[hover]:fill-black/50 group-data-[open]:rotate-180" />
-              </DisclosureButton>
-              <DisclosurePanel className="mt-2 h-52 text-sm/5 text-black/50">
-                If you're unhappy with your purchase, we'll refund you in full.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Officiis ducimus quis, cum quod esse sunt veniam illo adipisci
-                earum sint ipsa, commodi soluta voluptatibus voluptate veritatis
-                aspernatur placeat cumque labore architecto maiores facere
-                vitae. Delectus, inventore et, totam neque, sed beatae optio
-                nihil ducimus placeat est asperiores. Rerum earum eum quaerat
-                ducimus obcaecati assumenda eligendi fugit et explicabo autem
-                sapiente voluptatibus id esse inventore voluptates libero
-                distinctio, ab modi ex optio, fugiat aspernatur doloremque
-                dolorem! Ducimus tempore deleniti facilis dolores necessitatibus
-                explicabo, voluptate aliquam sit dolorem omnis quibusdam libero
-                voluptas. Placeat tenetur veritatis esse itaque minima
-                voluptates rem ipsa maxime?
-              </DisclosurePanel>
-            </Disclosure>
-            <Disclosure
-              as="div"
-              className="p-6 bg-primary/50 rounded-2xl w-2/3"
-            >
-              <DisclosureButton className="group flex w-full items-center justify-between">
-                <span className="text-sm/6 font-medium text-white group-data-[hover]:text-primary">
-                  What is your refund policy?
-                </span>
-                <ChevronDownIcon className="size-5 fill-primary/60 group-data-[hover]:fill-black/50 group-data-[open]:rotate-180" />
-              </DisclosureButton>
-              <DisclosurePanel className="mt-2 h-52 text-sm/5 text-black/50">
-                If you're unhappy with your purchase, we'll refund you in full.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Officiis ducimus quis, cum quod esse sunt veniam illo adipisci
-                earum sint ipsa, commodi soluta voluptatibus voluptate veritatis
-                aspernatur placeat cumque labore architecto maiores facere
-                vitae. Delectus, inventore et, totam neque, sed beatae optio
-                nihil ducimus placeat est asperiores. Rerum earum eum quaerat
-                ducimus obcaecati assumenda eligendi fugit et explicabo autem
-                sapiente voluptatibus id esse inventore voluptates libero
-                distinctio, ab modi ex optio, fugiat aspernatur doloremque
-                dolorem! Ducimus tempore deleniti facilis dolores necessitatibus
-                explicabo, voluptate aliquam sit dolorem omnis quibusdam libero
-                voluptas. Placeat tenetur veritatis esse itaque minima
-                voluptates rem ipsa maxime?
-              </DisclosurePanel>
-            </Disclosure>
+            {[...Array(5)].map((elm, idx) => (
+              <Disclosure
+                key={idx}
+                as="div"
+                defaultOpen={idx === 0}
+                className="p-6 bg-bgColor rounded-2xl w-2/3"
+              >
+                <DisclosureButton className="group flex w-full items-center justify-between">
+                  <span className="text-sm/6 font-medium text-gray-600 group-data-[hover]:text-primary">
+                    What is your refund policy?
+                  </span>
+                  <ChevronDownIcon className="size-5 fill-primary/60 group-data-[hover]:fill-black/50 group-data-[open]:rotate-180" />
+                </DisclosureButton>
+                <DisclosurePanel className="mt-2 h-52 text-sm/5 text-primary">
+                  If you're unhappy with your purchase, we'll refund you in
+                  full. Lorem, ipsum dolor sit amet consectetur adipisicing
+                  elit. Officiis ducimus quis, cum quod esse sunt veniam illo
+                  adipisci earum sint ipsa, commodi soluta voluptatibus
+                  voluptate veritatis aspernatur placeat cumque labore
+                  architecto maiores facere vitae. Delectus, inventore et, totam
+                  neque, sed beatae optio nihil ducimus placeat est asperiores.
+                  Rerum earum eum quaerat ducimus obcaecati assumenda eligendi
+                  fugit et explicabo autem sapiente voluptatibus id esse
+                  inventore voluptates libero distinctio, ab modi ex optio,
+                  fugiat aspernatur doloremque dolorem! Ducimus tempore deleniti
+                  facilis dolores necessitatibus explicabo, voluptate aliquam
+                  sit dolorem omnis quibusdam libero voluptas. Placeat tenetur
+                  veritatis esse itaque minima voluptates rem ipsa maxime?
+                </DisclosurePanel>
+              </Disclosure>
+            ))}
+
             {/* </Transition> */}
             {/* </div>
             <div className="w-full lg:w-1/2 px-4 py-2">
