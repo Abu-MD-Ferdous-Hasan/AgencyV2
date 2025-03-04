@@ -1,45 +1,37 @@
 import { StarIcon } from "@heroicons/react/24/solid";
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
+const transformStyles = [
+  "translate-y-[61px]",
+  "", // empty for no transform
+  "p-2.5",
+  "translate-x-40 p-1.5",
+  "translate-x-34 -translate-y-4 p-1.5",
+  "translate-x-34 -translate-y-28 p-2.5",
+  "-translate-y-30",
+  "translate-x-12",
+  "translate-x-20 -translate-y-30 p-1",
+];
+
+const getImages = async () => {
+  const serverUrl = import.meta.env.VITE_server;
+  const res = await fetch(`${serverUrl}/testimonials`);
+  const testimonialData = await res.json();
+
+  return testimonialData?.map((testimonial, index) => ({
+    ...testimonial,
+    transform: transformStyles[index],
+  }));
+};
+
 export default function Testimonial() {
-  const images = [
-    {
-      src: "https://images.unsplash.com/photo-1519419691348-3b3433c4c20e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fGZyZWUlMjBpbWFnZXMlMjBwZW9wbGV8ZW58MHx8MHx8fDA%3D",
-      transform: "translate-y-[61px]",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      // transform: "",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      transform: "p-2.5",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      transform: "translate-x-40 p-1.5",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      transform: "translate-x-34 -translate-y-4 p-1.5",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      transform: "translate-x-34 -translate-y-28 p-2.5",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      transform: "-translate-y-30",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?q=80&w=1966&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      transform: "translate-x-12",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1484588168347-9d835bb09939?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      transform: "translate-x-20 -translate-y-30 p-1",
-    },
-  ];
+  const { data: testimonials, isLoading } = useQuery({
+    queryKey: ["testimonialsHome"],
+    queryFn: getImages,
+  });
+  console.log(testimonials);
+  if (isLoading) return <div>Loading...</div>;
   const SingleTestimonial = ({ image, title, details, name, position }) => {
     return (
       <div className="relative w-full pb-16 px-32">
@@ -107,12 +99,12 @@ export default function Testimonial() {
       <div className="h-screen grid grid-cols-2 place-items-center ">
         <div className="relative flex justify-center items-center">
           <div className="grid grid-cols-3 place-items-center gap-20 w-full">
-            {images.map((img, index) => (
+            {testimonials?.map((testimonial, index) => (
               <img
-                key={index}
-                src={img.src}
+                key={testimonial._id}
+                src={testimonial.image}
                 alt={`Scattered ${index + 1}`}
-                className={`w-32 h-32 rounded-3xl object-cover  transition-transform duration-300 ease-in-out ${img.transform}`}
+                className={`w-32 h-32 rounded-3xl object-cover  transition-transform duration-300 ease-in-out ${testimonial.transform}`}
               />
             ))}
           </div>
@@ -122,13 +114,12 @@ export default function Testimonial() {
             {/* <Swiper slidesPerView={1} ref={sliderRef}>
             <SwiperSlide> */}
             <SingleTestimonial
-              image="https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/image-01.jpg"
-              reviewImg="https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/lineicon.svg"
+              image={testimonials[0].image}
               reviewAlt="lineicon"
-              details="Velit est sit voluptas eum sapiente omnis! Porro, impedit minus quam reprehenderit tempore sint quaerat id! Mollitia perspiciatis est asperiores commodi labore!"
-              name="Larry Diamond"
-              position="Chief Executive Officer."
-              title={"Doesn't feel like an agency"}
+              details={testimonials[0].feedback}
+              name={testimonials[0].name}
+              position={testimonials[0].designation}
+              title={"Exceeding Expectations"}
             />
             {/* </SwiperSlide> */}
             {/* <SwiperSlide>

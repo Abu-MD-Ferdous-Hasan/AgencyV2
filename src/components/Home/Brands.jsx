@@ -11,10 +11,10 @@ export default function Brands() {
           around the world
         </h2>
         <p className="font-agrandir-widelight w-1/2 leading-6 tracking-widest top-0 font-extralight max-w-2xl">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero saepe
-          similique, voluptatum temporibus, soluta minima ex aliquid laudantium
-          impedit aut voluptas, nisi odit quas explicabo perferendis dicta. Quo,
-          molestias magni!
+          We've built trust with leading companies worldwide, delivering
+          exceptional digital solutions that drive growth and innovation. Our
+          partnerships span across industries, from tech giants to emerging
+          startups.
         </p>
       </div>
       <Marquee autoFill={true} direction="left">

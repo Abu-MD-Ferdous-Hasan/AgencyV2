@@ -2,13 +2,9 @@ import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { RoundedButton } from "./RoundedButton.jsx";
 
 const navigation = [
@@ -18,11 +14,9 @@ const navigation = [
   { name: "Testimonials", href: "testimonials" },
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 export default function Navbar() {
+  const navigate = useNavigate();
+
   return (
     <Disclosure as="nav" className="bg-white shadow-2xs py-4 z-20 sticky top-0">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-0 ">
@@ -96,6 +90,7 @@ export default function Navbar() {
                   Sign In
                 </Link>
                 <RoundedButton
+                  clickHandler={() => navigate("/register")}
                   text={"Register"}
                   bgColor={"primary"}
                   customStyle={"text-white"}

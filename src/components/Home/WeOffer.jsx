@@ -42,7 +42,8 @@ export default function WeOffer() {
               What We Do
             </h2>
             <p className="text-gray-200 leading-relaxed font-light text-xl mx-auto pb-2">
-              Save time managing advertising &amp; Content for your business.
+              Streamline your digital presence with our comprehensive suite of
+              services designed to elevate your business in the digital age.
             </p>
           </header>
           {/* <!-- End heading --> */}

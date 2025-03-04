@@ -21,7 +21,7 @@ export default function Services() {
 
   if (error) return "An error has occurred: " + error.message;
   return (
-    <section className="py-20 px-24 bg-[#f9f9fb] mx-auto text-center min-h-screen">
+    <section className="py-20 px-24 bg-bg mx-auto text-center min-h-screen">
       <div>
         <h1 className="md:text-5xl font-primary font-bold">
           Services we provide

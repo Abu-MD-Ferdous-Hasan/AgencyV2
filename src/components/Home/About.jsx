@@ -14,7 +14,8 @@ export default function About() {
 
           <div className="md:max-w-none">
             <h2 className="font-inter text-2xl font-semibold text-gray-900 sm:text-5xl">
-              Designed and built <br /> by an astonishing <br /> creative team.
+              Crafting Digital Excellence <br /> with a Team of <br /> Visionary
+              Creators.
             </h2>
 
             <RoundedButton

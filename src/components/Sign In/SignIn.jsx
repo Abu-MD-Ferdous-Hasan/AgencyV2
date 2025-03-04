@@ -9,16 +9,12 @@ export default function SignIn() {
           <Link to={"/"} className="flex shrink-0 items-center">
             <img
               alt="Company"
-              src="src\assets\logo.png"
-              className="mx-auto h-20 w-auto"
+              src="public\favicon.png"
+              className="mx-auto h-20 w-auto cursor-pointer"
             />
           </Link>
-          {/* <img
-            alt="Your Company"
-            src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-            className="mx-auto h-10 w-auto"
-          /> */}
-          <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-secondary">
+
+          <h2 className="mt-10 font-primary text-center text-5xl font-bold tracking-tight text-secondary">
             Sign in to your account
           </h2>
         </div>
@@ -86,7 +82,7 @@ export default function SignIn() {
           <p className="mt-10 text-center text-sm/6 text-gray-500">
             Not a member?{" "}
             <Link
-              to="register"
+              to="/register"
               className="font-semibold text-primary hover:text-primary/60"
             >
               Register for free!
