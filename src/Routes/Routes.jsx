@@ -8,6 +8,8 @@ import TestimonialsPage from "../components/Testimonials/TestimonialPage";
 import Portfolio from "../components/Portfolio/Portfolio";
 import SignIn from "../components/Sign In/SignIn";
 import Register from "../components/Register/Register";
+import ManageServices from "../components/Admin/ManageServices";
+import { ProtectedRoute } from "../components/ProtectedRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -20,8 +22,14 @@ export const routes = createBrowserRouter([
       { path: "portfolio", element: <Portfolio /> },
       { path: "about-us", element: <AboutUs /> },
       { path: "testimonials", element: <TestimonialsPage /> },
-      ,
-      ,
+      { path: "test", element: <ManageServices /> },
+    ],
+  },
+  {
+    path: "/admin",
+    element: <ProtectedRoute>{/* <AdminLayout /> */}</ProtectedRoute>,
+    children: [
+      // ... protected routes
     ],
   },
   { path: "*", element: <Error /> },

@@ -1,10 +1,56 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import toast, { Toaster } from "react-hot-toast";
+import { useAuth } from "../../context/AuthContext";
 
 export default function SignIn() {
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { login } = useAuth();
+
+  const loginMutation = useMutation({
+    mutationFn: async (userData) => {
+      const res = await fetch(`${import.meta.env.VITE_server}/signin`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      const data = await res.json();
+
+      // If the response indicates failure, throw an error with the server message
+      if (!data.success) {
+        throw new Error(data.message);
+      }
+
+      return data;
+    },
+    onSuccess: (data) => {
+      login(data.accessToken, data.userId);
+      toast.success(data.message);
+      navigate("/");
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
+  const onSubmit = (data) => {
+    loginMutation.mutate(data);
+  };
+
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 ">
+      <Toaster />
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <Link to={"/"} className="flex shrink-0 items-center">
             <img
@@ -20,7 +66,7 @@ export default function SignIn() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div>
               <label
                 htmlFor="email"
@@ -30,13 +76,21 @@ export default function SignIn() {
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
-                  name="email"
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Invalid email address",
+                    },
+                  })}
                   type="email"
-                  required
-                  autoComplete="email"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6"
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -59,22 +113,31 @@ export default function SignIn() {
               </div>
               <div className="mt-2">
                 <input
-                  id="password"
-                  name="password"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 6,
+                      message: "Password must be at least 6 characters",
+                    },
+                  })}
                   type="password"
-                  required
-                  autoComplete="current-password"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6"
                 />
+                {errors.password && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.password.message}
+                  </p>
+                )}
               </div>
             </div>
 
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md border border-primary bg-primary px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-white hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                disabled={loginMutation.isPending}
+                className="flex w-full justify-center rounded-md border border-primary bg-primary px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-white hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Sign in
+                {loginMutation.isPending ? "Signing in..." : "Sign in"}
               </button>
             </div>
           </form>
