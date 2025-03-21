@@ -10,6 +10,7 @@ import SignIn from "../components/Sign In/SignIn";
 import Register from "../components/Register/Register";
 import ManageServices from "../components/Admin/ManageServices";
 import { ProtectedRoute } from "../components/ProtectedRoute";
+import AdminLayout from "../Layout/AdminLayout";
 
 export const routes = createBrowserRouter([
   {
@@ -27,9 +28,17 @@ export const routes = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <ProtectedRoute>{/* <AdminLayout /> */}</ProtectedRoute>,
+    element: (
+      <ProtectedRoute>
+        <AdminLayout />
+      </ProtectedRoute>
+    ),
     children: [
-      // ... protected routes
+      { path: "services", element: <ManageServices /> },
+      { path: "dashboard", element: <div /> },
+      { path: "users", element: <div /> },
+      { path: "testimonials", element: <div /> },
+      { path: "launches", element: <div /> },
     ],
   },
   { path: "*", element: <Error /> },

@@ -70,9 +70,9 @@ export default function Register() {
       services: selectedServices,
     };
 
-    console.log(formData);
+    // console.log(formData);
 
-    // registerMutation.mutate(formData);
+    registerMutation.mutate(formData);
   };
 
   return (

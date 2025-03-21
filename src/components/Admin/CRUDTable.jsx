@@ -29,12 +29,12 @@ export default function CRUDTable({ endpoint, columns, title }) {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <div className="p-4">
+    <div>
       <h2 className="text-2xl font-bold mb-4">Manage {title}</h2>
-      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+      <div className="-my-2 overflow-x-auto">
+        <div className="inline-block min-w-full py-2 align-middle">
           <div className="overflow-hidden border-b border-gray-200 rounded-md shadow-md">
-            <table className="min-w-full overflow-x-scroll divide-y divide-gray-200">
+            <table className="max-w-fit overflow-x-scroll divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
                   {columns.map((col) => (
@@ -82,13 +82,13 @@ export default function CRUDTable({ endpoint, columns, title }) {
                     <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                       <button
                         onClick={() => setEditItem(item)}
-                        className="text-indigo-600 hover:text-indigo-900 mr-4"
+                        className="text-primary/80 hover:text-primary cursor-pointer mr-4"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => deleteMutation.mutate(item._id)}
-                        className="text-red-600 hover:text-red-900"
+                        className="text-red-600 hover:text-red-900 cursor-pointer"
                       >
                         Delete
                       </button>
