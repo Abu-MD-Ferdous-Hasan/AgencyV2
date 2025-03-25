@@ -55,7 +55,7 @@ export default function Navbar() {
             <Link to={"/"} className="flex shrink-0 items-center">
               <img
                 alt="Your Company"
-                src="src\assets\logo.png"
+                src="https://i.postimg.cc/8cxRZhhb/logo.png"
                 className="h-20 w-20 object-cover"
               />
             </Link>
@@ -105,7 +105,7 @@ export default function Navbar() {
                   <span className="sr-only">Open user menu</span>
                   <img
                     className="size-10  rounded-full object-cover text-primary ring-1 ring-offset-1 ring-primary"
-                    src="src\assets\imgs\male-avatar.jpg"
+                    src="https://i.postimg.cc/9XSg8kYC/male-avatar.jpg"
                     alt="user"
                   />
                 </MenuButton>
