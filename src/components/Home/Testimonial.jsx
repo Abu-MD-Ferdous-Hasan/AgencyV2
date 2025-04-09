@@ -73,7 +73,7 @@ export default function Testimonial() {
                   alt="reviewer"
                 />
                 <span>
-                  <h4 className="mb-2 text-[22px] font-semibold leading-[27px] text-primary dark:text-white">
+                  <h4 className="mb-2 text-[22px] font-semibold leading-[27px] text-primary">
                     {name}
                   </h4>
                   <p className="text-base text-black/50 dark:text-dark-6">

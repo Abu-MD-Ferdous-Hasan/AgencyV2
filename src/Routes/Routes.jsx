@@ -10,6 +10,11 @@ import SignIn from "../components/Sign In/SignIn";
 import Register from "../components/Register/Register";
 import ManageServices from "../components/Admin/ManageServices";
 import { ProtectedRoute } from "../components/ProtectedRoute";
+import AdminLayout from "../Layout/AdminLayout";
+import Dashboard from "../components/Admin/Dashboard";
+import ManageProjects from "../components/Admin/ManageLaunches";
+import ManageUsers from "../components/Admin/ManageUsers";
+import ManageTestimonials from "../components/Admin/ManageTestimonials";
 
 export const routes = createBrowserRouter([
   {
@@ -27,9 +32,17 @@ export const routes = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <ProtectedRoute>{/* <AdminLayout /> */}</ProtectedRoute>,
+    element: (
+      <ProtectedRoute>
+        <AdminLayout />
+      </ProtectedRoute>
+    ),
     children: [
-      // ... protected routes
+      { path: "services", element: <ManageServices /> },
+      { path: "dashboard", element: <Dashboard /> },
+      { path: "users", element: <ManageUsers /> },
+      { path: "testimonials", element: <ManageTestimonials /> },
+      { path: "launches", element: <ManageProjects /> },
     ],
   },
   { path: "*", element: <Error /> },
