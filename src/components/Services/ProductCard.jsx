@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { RoundedButton } from "../RoundedButton";
 import { RiServiceFill } from "react-icons/ri";
-import {} from "@heroicons/react/solid";
-// import { ChatBubbleLeftEllipsisIcon } from "@heroicons/react/24/solid";
-// import { ChatBubbleLeftEllipsisIcon } from "@heroicons/react/24";
+import DynamicIconRender from "../../utilities/DynamicIconRender";
 
 export default function ProductCard({
   productIcon,
   productName,
   productDetails,
 }) {
-  const [IconComponent, setIconComponent] = useState(null);
+  const IconComponent = DynamicIconRender({ productIcon });
 
-  useEffect(() => {
-    if (productIcon) {
-      import(`@heroicons/react/24/solid`)
-        .then((module) => {
-          const ImportedIcon = module[productIcon];
-          if (ImportedIcon) setIconComponent(() => ImportedIcon);
-        })
-        .catch((err) => {
-          console.error("Icon not found:", err);
-        });
-    }
-  }, [productIcon]);
+  // useEffect(() => {
+  //   if (productIcon) {
+  //     import(`@heroicons/react/24/solid`)
+  //       .then((module) => {
+  //         const ImportedIcon = module[productIcon];
+  //         if (ImportedIcon) setIconComponent(() => ImportedIcon);
+  //       })
+  //       .catch((err) => {
+  //         console.error("Icon not found:", err);
+  //       });
+  //   }
+  // }, [productIcon]);
 
   return (
     <div className="flex px-14 py-10 rounded-[20px] duration-150 bg-white hover:shadow-2xl cursor-pointer shadow-2xs flex-col justify-baseline items-start gap-4">

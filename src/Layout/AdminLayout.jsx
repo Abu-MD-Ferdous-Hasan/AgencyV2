@@ -38,14 +38,14 @@ export default function AdminLayout() {
   return (
     <>
       <Navbar />
-      <div className="flex gap-4">
+      <div className="flex gap-4 bg-bg">
         <aside
           class="bg-white border-r border-gray-200
-         -translate-x-80 inset-0 ml-4 h-[calc(100vh-32px)] w-60 transition-transform duration-300 xl:translate-x-0"
+         -translate-x-80 inset-0 ml-4 h-[calc(100vh-32px)] min-w-60  transition-transform duration-300 xl:translate-x-0"
         >
           <div class="relative border-b border-white/20">
             <a class="flex items-center gap-4 py-6 px-8" href="#/">
-              <h6 class="block antialiased tracking-normal text-xl font-bold leading-relaxed text-primary font-primary">
+              <h6 class=" antialiased tracking-normal text-xl font-bold leading-relaxed text-primary font-primary">
                 Admin Dashboard
               </h6>
             </a>

@@ -2,8 +2,12 @@ const BASE_URL = import.meta.env.VITE_server;
 
 export const apiService = {
   // Generic CRUD operations
-  async get(endpoint) {
-    const res = await fetch(`${BASE_URL}/${endpoint}`);
+  async get(endpoint, useToken = false) {
+    const res = await fetch(`${BASE_URL}/${endpoint}`, {
+      headers: useToken
+        ? { authorization: `Bearer ${localStorage.getItem("accessToken")}` }
+        : {},
+    });
     return await res.json();
   },
 
@@ -30,8 +34,17 @@ export const apiService = {
   },
 
   async delete(endpoint, id) {
+    const headers = {};
+
+    const token = localStorage.getItem("accessToken");
+    console.log(token);
+    if (token) {
+      headers.authorization = `Bearer ${token}`;
+    }
+
     const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
       method: "DELETE",
+      headers,
     });
     return await res.json();
   },

@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { apiService } from "../utilities/apiService";
 
 const AuthContext = createContext(null);
 
@@ -10,16 +11,41 @@ export const AuthProvider = ({ children }) => {
   // Check authentication status on mount and when localStorage changes
   useEffect(() => {
     checkAuth();
-    window.addEventListener("storage", checkAuth);
-    return () => window.removeEventListener("storage", checkAuth);
   }, []);
 
-  const checkAuth = () => {
-    const token = localStorage.getItem("accessToken");
-    const userId = localStorage.getItem("userId");
-    setIsAuthenticated(!!token && !!userId);
-    setUser(userId ? { id: userId } : null);
-    setLoading(false);
+  const checkAuth = async () => {
+    try {
+      const token = localStorage.getItem("accessToken");
+      const userId = localStorage.getItem("userId");
+
+      if (!token || !userId) {
+        setIsAuthenticated(false);
+        setUser(null);
+        setLoading(false);
+        return;
+      }
+
+      const response = await apiService.get("verify-token", true);
+
+      if (response.valid) {
+        setIsAuthenticated(true);
+        setUser(response.user || { id: userId });
+      } else {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("userId");
+        setIsAuthenticated(false);
+        setUser(null);
+      }
+    } catch (error) {
+      // Handle network errors or invalid tokens
+      console.error("Auth check failed:", error);
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("userId");
+      setIsAuthenticated(false);
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const login = (token, userId) => {
