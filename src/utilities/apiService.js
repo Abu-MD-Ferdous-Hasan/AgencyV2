@@ -23,21 +23,24 @@ export const apiService = {
   },
 
   async put(endpoint, id, data) {
+    const headers = { "Content-Type": "application/json" };
+
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      headers.authorization = `Bearer ${token}`;
+    }
     const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers,
       body: JSON.stringify(data),
     });
     return await res.json();
   },
 
   async delete(endpoint, id) {
-    const headers = {};
+    const headers = { "Content-Type": "application/json" };
 
     const token = localStorage.getItem("accessToken");
-    console.log(token);
     if (token) {
       headers.authorization = `Bearer ${token}`;
     }

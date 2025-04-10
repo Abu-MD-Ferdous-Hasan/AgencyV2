@@ -9,6 +9,7 @@ import {
 } from "@heroicons/react/24/solid";
 import DynamicIconRender from "../../utilities/DynamicIconRender";
 import DeleteModal from "./DeleteModal";
+import EditModal from "./EditModal";
 
 export default function CRUDTable({
   endpoint,
@@ -36,7 +37,13 @@ export default function CRUDTable({
 
   const updateMutation = useMutation({
     mutationFn: ({ id, data }) => apiService.put(endpoint, id, data),
-    onSuccess: () => queryClient.invalidateQueries([endpoint]),
+    onSuccess: () => {
+      queryClient.invalidateQueries([endpoint]);
+      setEditItem(null);
+    },
+    onError: (error) => {
+      console.error("Update failed:", error);
+    },
   });
 
   const deleteMutation = useMutation({
@@ -105,6 +112,14 @@ export default function CRUDTable({
   const handleDelete = () => {
     deleteMutation.mutate(deleteModal.itemId);
     setDeleteModal({ isOpen: false, itemId: null });
+  };
+
+  const handleSave = async (id, data) => {
+    try {
+      await updateMutation.mutateAsync({ id, data });
+    } catch (error) {
+      throw new Error(error.message || "Failed to update");
+    }
   };
 
   if (isLoading) {
@@ -207,7 +222,7 @@ export default function CRUDTable({
                   <div className="flex items-center justify-end gap-3">
                     <button
                       onClick={() => setEditItem(item)}
-                      className="text-blue-600 hover:text-blue-800 transition-colors"
+                      className="text-green-vibrant hover:text-green-vibrant-deep transition-colors cursor-pointer"
                       title="Edit"
                     >
                       <PencilIcon className="w-5 h-5" />
@@ -219,7 +234,7 @@ export default function CRUDTable({
                           itemId: item._id,
                         })
                       }
-                      className="text-red-500 hover:text-red-700 transition-colors"
+                      className="text-red-vibrant hover:text-red-vibrant-deep transition-colors cursor-pointer"
                       title="Delete"
                     >
                       <TrashIcon className="h-5 w-5" />
@@ -237,6 +252,18 @@ export default function CRUDTable({
         onClose={() => setDeleteModal({ isOpen: false, itemId: null })}
         onDelete={handleDelete}
         itemType={title.slice(0, -1)} // Remove 's' from plural title
+      />
+
+      <EditModal
+        isOpen={!!editItem}
+        onClose={() => {
+          setEditItem(null);
+          updateMutation.reset();
+        }}
+        onSave={handleSave}
+        editItem={editItem}
+        title={title.slice(0, -1)}
+        isLoading={updateMutation.isLoading}
       />
     </div>
   );
