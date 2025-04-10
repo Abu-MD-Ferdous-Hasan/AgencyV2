@@ -26,6 +26,10 @@ html {
   --color-secondary: #23273a;
   --color-bgColor: #e2dbd3;
   --color-bg: #f9f9fb;
+  --color-green-vibrant: #4caf50;
+  --color-green-vibrant-deep: #388e3c;
+  --color-red-vibrant: #f44336;
+  --color-red-vibrant-deep: #d32f2f;
   --font-primary: Inter, serif;
   --font-poiret: Poiret, serif;
   --font-agrandir: Agrandir-reg, serif;
