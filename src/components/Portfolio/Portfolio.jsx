@@ -36,6 +36,7 @@ export default function Portfolio() {
           : projects?.map((project) => (
               <ProjectCard
                 key={project._id}
+                _id={project._id}
                 projectTitle={project.title}
                 projectCategory={project.category}
                 projectImage={project.image}

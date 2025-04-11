@@ -15,6 +15,7 @@ import Dashboard from "../components/Admin/Dashboard";
 import ManageProjects from "../components/Admin/ManageLaunches";
 import ManageUsers from "../components/Admin/ManageUsers";
 import ManageTestimonials from "../components/Admin/ManageTestimonials";
+import ProjectDetails from "../components/Portfolio/ProjectDetails";
 
 export const routes = createBrowserRouter([
   {
@@ -24,7 +25,11 @@ export const routes = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "home", element: <Home /> },
       { path: "services", element: <Services /> },
-      { path: "portfolio", element: <Portfolio /> },
+      {
+        path: "portfolio",
+        element: <Portfolio />,
+      },
+      { path: "portfolio/:id", element: <ProjectDetails /> },
       { path: "about-us", element: <AboutUs /> },
       { path: "testimonials", element: <TestimonialsPage /> },
       { path: "test", element: <ManageServices /> },

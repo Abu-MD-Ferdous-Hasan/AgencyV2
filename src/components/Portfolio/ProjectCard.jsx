@@ -1,15 +1,22 @@
 import React from "react";
 import { FaServer } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function ProjectCard({
+  _id,
   projectTitle,
   projectCategory,
   projectImage,
   projectDescription,
   projectTechnologies,
 }) {
+  const navigate = useNavigate();
+
   return (
-    <div className="w-full min-h-96 bg-white rounded-lg overflow-hidden shadow-2xs hover:shadow-2xl transition-shadow duration-300">
+    <div
+      onClick={() => navigate(`/portfolio/${_id}`)}
+      className="w-full min-h-96 bg-white rounded-lg overflow-hidden shadow-2xs hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
+    >
       <div className="relative h-48 overflow-hidden">
         <img
           src={projectImage}
@@ -36,7 +43,6 @@ export default function ProjectCard({
               className={`px-2 py-1 text-gray-700 rounded-md text-sm font-medium flex items-center gap-1`}
               style={{ backgroundColor: tech.color + "20" }}
             >
-              {console.log(tech)}
               {tech.icon ? (
                 <img src={tech.icon} alt={tech.name} className="w-4 h-4" />
               ) : (
