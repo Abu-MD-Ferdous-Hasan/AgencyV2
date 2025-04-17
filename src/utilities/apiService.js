@@ -11,10 +11,13 @@ export const apiService = {
     return await res.json();
   },
 
-  async post(endpoint, data) {
+  async post(endpoint, data, useToken = false) {
     const res = await fetch(`${BASE_URL}/${endpoint}`, {
       method: "POST",
       headers: {
+        ...(useToken
+          ? { authorization: `Bearer ${localStorage.getItem("accessToken")}` }
+          : {}),
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),

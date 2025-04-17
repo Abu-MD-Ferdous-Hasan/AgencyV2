@@ -6,6 +6,13 @@ import {
   TrashIcon,
   PlusIcon,
   MagnifyingGlassIcon,
+  ChatBubbleLeftEllipsisIcon,
+  GlobeAltIcon,
+  DevicePhoneMobileIcon,
+  WrenchScrewdriverIcon,
+  CodeBracketSquareIcon,
+  ChartBarIcon,
+  CloudIcon,
 } from "@heroicons/react/24/solid";
 import DynamicIconRender from "../../utilities/DynamicIconRender";
 import DeleteModal from "./DeleteModal";
@@ -31,8 +38,15 @@ export default function CRUDTable({
   });
 
   const createMutation = useMutation({
-    mutationFn: (newItem) => apiService.post(endpoint, newItem),
-    onSuccess: () => queryClient.invalidateQueries([endpoint]),
+    mutationFn: (newItem) => {
+      // Append /new to the endpoint for creating new items
+      const createEndpoint = `${endpoint}/new`;
+      return apiService.post(createEndpoint, newItem, true);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries([endpoint]);
+      setEditItem(null);
+    },
   });
 
   const updateMutation = useMutation({
@@ -56,8 +70,8 @@ export default function CRUDTable({
   const filteredData =
     data?.filter((item) => {
       const searchFields = [
+        item.projectTitle, // for projects
         item.name, // for testimonials
-        item.title, // for projects
         item.memberName, // for team members
         item.firstName, // for users
         item.lastName, // for users
@@ -72,14 +86,37 @@ export default function CRUDTable({
 
   const renderTableCell = useCallback((item, col) => {
     if (col.key === "icon") {
+      if (title === "Services") {
+        const serviceIcons = {
+          ChatBubbleLeftEllipsisIcon,
+          GlobeAltIcon,
+          DevicePhoneMobileIcon,
+          MagnifyingGlassIcon,
+          WrenchScrewdriverIcon,
+          CodeBracketSquareIcon,
+          ChartBarIcon,
+          CloudIcon,
+        };
+
+        const Icon = serviceIcons[item[col.key]];
+        if (Icon) {
+          return (
+            <div className="flex items-center">
+              <div className="flex-shrink-0">
+                <Icon className="w-6 h-6 text-primary" />
+              </div>
+            </div>
+          );
+        }
+      }
+
       return (
         <Suspense
           fallback={
             <div className="w-6 h-6 rounded-full bg-gray-200 animate-pulse" />
           }
         >
-          {/* {IconRenderer && <IconRenderer icon={item[col.key]} />} */}
-          {/* {console.log(IconRenderer, item[col.key])} */}
+          <DynamicIconRender iconName={item[col.key]} />
         </Suspense>
       );
     }
@@ -107,7 +144,7 @@ export default function CRUDTable({
         {item[col.key]}
       </div>
     );
-  }, []); // Empty dependency array since we don't use any external values
+  }, []);
 
   const handleDelete = () => {
     deleteMutation.mutate(deleteModal.itemId);
@@ -116,10 +153,68 @@ export default function CRUDTable({
 
   const handleSave = async (id, data) => {
     try {
-      await updateMutation.mutateAsync({ id, data });
+      if (id) {
+        await updateMutation.mutateAsync({ id, data });
+      } else {
+        await createMutation.mutateAsync(data);
+      }
     } catch (error) {
-      throw new Error(error.message || "Failed to update");
+      throw new Error(error.message || "Failed to save");
     }
+  };
+
+  const handleAddNew = () => {
+    // Create an empty object with the same structure as the columns
+    const emptyItem = columns.reduce((acc, col) => {
+      // Handle special fields with their proper structure
+      switch (col.key) {
+        case "projectTechnologies":
+          acc[col.key] = [];
+          break;
+        case "features":
+          acc[col.key] = [];
+          break;
+        case "challenges":
+          acc[col.key] = [];
+          break;
+        case "image":
+        case "memberImg":
+        case "projectImage":
+          acc[col.key] = "";
+          break;
+        case "title":
+          acc.projectTitle = "";
+          break;
+        case "category":
+          acc.projectCategory = "";
+          break;
+        case "description":
+          acc.projectDescription = "";
+          break;
+        case "links":
+          acc.links = {
+            github: "",
+            live: "",
+          };
+          break;
+        default:
+          acc[col.key] = "";
+      }
+      return acc;
+    }, {});
+
+    // Add any additional fields that might not be in columns but are needed
+    if (title === "Projects") {
+      emptyItem.projectTechnologies = [];
+      emptyItem.features = [];
+      emptyItem.challenges = [];
+      emptyItem.projectTitle = emptyItem.projectTitle || "";
+      emptyItem.projectCategory = emptyItem.projectCategory || "";
+      emptyItem.projectDescription = emptyItem.projectDescription || "";
+      emptyItem.projectImage = emptyItem.projectImage || "";
+    }
+
+    setEditItem(emptyItem);
   };
 
   if (isLoading) {
@@ -134,7 +229,10 @@ export default function CRUDTable({
     return (
       <div className="flex flex-col items-center justify-center h-64">
         <p className="text-gray-500 text-lg">No data available</p>
-        <button className="mt-4 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90">
+        <button
+          onClick={handleAddNew}
+          className="mt-4 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90"
+        >
           Add New {title}
         </button>
       </div>
@@ -142,19 +240,19 @@ export default function CRUDTable({
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6">
+    <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6">
       <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
           <div>
-            <h3 className="text-2xl font-bold text-gray-800 capitalize">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-800 capitalize">
               Manage {title}
             </h3>
             <p className="text-gray-500 mt-1">
               {filteredData.length} {title} found
             </p>
           </div>
-          <div className="flex gap-4">
-            <div className="relative">
+          <div className="flex flex-col sm:flex-row gap-4 self-stretch sm:self-auto">
+            <div className="relative flex-1 sm:flex-none">
               <input
                 type="text"
                 placeholder={`Search by ${
@@ -168,7 +266,7 @@ export default function CRUDTable({
                     ? "product name"
                     : "name"
                 }...`}
-                className="pl-4 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20"
+                className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20"
                 value={searchTerm}
                 onChange={(e) => {
                   setSearchTerm(e.target.value);
@@ -178,7 +276,10 @@ export default function CRUDTable({
                 <MagnifyingGlassIcon className="w-5 h-5" />
               </span>
             </div>
-            <button className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors">
+            <button
+              onClick={handleAddNew}
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
+            >
               <PlusIcon className="w-5 h-5" />
               Add New
             </button>
@@ -186,72 +287,71 @@ export default function CRUDTable({
         </div>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="min-w-7xl w-full divide-y divide-gray-200">
-          <thead>
-            <tr className="bg-gray-50">
-              {columns.map((col) => (
-                <th
-                  key={col.key}
-                  scope="col"
-                  className="px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left"
-                >
-                  {col?.label}
-                </th>
-              ))}
-              <th
-                scope="col"
-                className="px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-right"
-              >
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {filteredData.map((item) => (
-              <tr
-                key={item._id}
-                className="hover:bg-gray-50 transition-colors duration-200"
-              >
-                {columns?.map((col) => (
-                  <td key={col.key} className="px-6 py-4 whitespace-nowrap">
-                    {renderTableCell(item, col)}
-                  </td>
+      <div className="overflow-x-auto -mx-4 sm:mx-0">
+        <div className="min-w-full inline-block align-middle">
+          <div className="overflow-hidden">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  {columns.map((col) => (
+                    <th
+                      key={col.key}
+                      scope="col"
+                      className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap"
+                    >
+                      {col.label}
+                    </th>
+                  ))}
+                  <th
+                    scope="col"
+                    className="px-4 sm:px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {filteredData.map((item) => (
+                  <tr key={item._id} className="hover:bg-gray-50">
+                    {columns.map((col) => (
+                      <td
+                        key={col.key}
+                        className="px-4 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900"
+                      >
+                        {renderTableCell(item, col)}
+                      </td>
+                    ))}
+                    <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <div className="flex items-center justify-end gap-2">
+                        <button
+                          onClick={() => setEditItem(item)}
+                          className="text-primary hover:text-primary/80"
+                        >
+                          <PencilIcon className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={() =>
+                            setDeleteModal({ isOpen: true, itemId: item._id })
+                          }
+                          className="text-red-600 hover:text-red-800"
+                        >
+                          <TrashIcon className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
                 ))}
-                <td className="px-6 py-4 text-right">
-                  <div className="flex items-center justify-end gap-3">
-                    <button
-                      onClick={() => setEditItem(item)}
-                      className="text-green-vibrant hover:text-green-vibrant-deep transition-colors cursor-pointer"
-                      title="Edit"
-                    >
-                      <PencilIcon className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={() =>
-                        setDeleteModal({
-                          isOpen: true,
-                          itemId: item._id,
-                        })
-                      }
-                      className="text-red-vibrant hover:text-red-vibrant-deep transition-colors cursor-pointer"
-                      title="Delete"
-                    >
-                      <TrashIcon className="h-5 w-5" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
       <DeleteModal
         isOpen={deleteModal.isOpen}
         onClose={() => setDeleteModal({ isOpen: false, itemId: null })}
         onDelete={handleDelete}
-        itemType={title.slice(0, -1)} // Remove 's' from plural title
+        itemType={title.slice(0, -1)}
       />
 
       <EditModal
@@ -259,11 +359,12 @@ export default function CRUDTable({
         onClose={() => {
           setEditItem(null);
           updateMutation.reset();
+          createMutation.reset();
         }}
         onSave={handleSave}
         editItem={editItem}
         title={title.slice(0, -1)}
-        isLoading={updateMutation.isLoading}
+        isLoading={updateMutation.isLoading || createMutation.isLoading}
       />
     </div>
   );

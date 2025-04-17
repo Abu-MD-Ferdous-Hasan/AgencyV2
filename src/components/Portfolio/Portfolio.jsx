@@ -37,11 +37,11 @@ export default function Portfolio() {
               <ProjectCard
                 key={project._id}
                 _id={project._id}
-                projectTitle={project.title}
-                projectCategory={project.category}
-                projectImage={project.image}
-                projectDescription={project.description}
-                projectTechnologies={project.technologies}
+                projectTitle={project.projectTitle}
+                projectCategory={project.projectCategory}
+                projectImage={project.projectImage}
+                projectDescription={project.projectDescription}
+                projectTechnologies={project.projectTechnologies}
               />
             ))}
       </div>

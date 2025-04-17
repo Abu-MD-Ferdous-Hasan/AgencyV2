@@ -3,7 +3,7 @@ import CRUDTable from "./CRUDTable";
 export default function ManageLaunches() {
   const columns = [
     {
-      key: "image",
+      key: "projectImage",
       label: "Preview",
       render: (image) => (
         <div className="flex items-center">
@@ -16,16 +16,15 @@ export default function ManageLaunches() {
       ),
     },
     {
-      key: "title",
+      key: "projectTitle",
       label: "Project Title",
     },
     {
-      key: "category",
+      key: "projectCategory",
       label: "Category",
     },
-
     {
-      key: "description",
+      key: "projectDescription",
       label: "Description",
       render: (description) => (
         <div className="max-w-xs">
@@ -36,24 +35,31 @@ export default function ManageLaunches() {
       ),
     },
     {
-      key: "technologies",
-      label: "Tech Stack",
-      render: (technologies) => (
-        <div className="flex gap-2 items-center">
-          {technologies?.map((tech, idx) => (
-            <div key={idx} className="group relative" title={tech.name}>
-              <img
-                src={tech.icon}
-                alt={tech.name}
-                className="w-6 h-6 hover:scale-110 transition-transform"
-                style={{ borderRadius: "0.25rem" }}
-              />
-              <span className="hidden group-hover:block absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                {tech.name}
-              </span>
-            </div>
-          ))}
-        </div>
+      key: "githubLink",
+      label: "GitHub",
+      render: (link) => (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary hover:text-primary/80"
+        >
+          View on GitHub
+        </a>
+      ),
+    },
+    {
+      key: "liveLink",
+      label: "Live Demo",
+      render: (link) => (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary hover:text-primary/80"
+        >
+          View Live
+        </a>
       ),
     },
   ];
