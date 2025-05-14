@@ -2,19 +2,19 @@ import React from "react";
 
 export default function TeamMember({ memberName, memberRole, memberImg }) {
   return (
-    <div class="w-full bg-white rounded-lg p-8 flex flex-col justify-center items-center">
-      <div class="mb-8">
+    <div className="w-full bg-white rounded-lg p-4 sm:p-6 md:p-8 flex flex-col justify-center items-center">
+      <div className="mb-4 sm:mb-6 md:mb-8">
         <img
-          class="object-center object-cover rounded-full h-44 w-44"
+          className="object-center object-cover rounded-full h-32 w-32 sm:h-40 sm:w-40 md:h-44 md:w-44"
           src={memberImg}
           alt="photo"
         />
       </div>
-      <div class="text-center">
-        <p class="text-2xl text-black font-primary font-semibold mb-2">
+      <div className="text-center">
+        <p className="text-lg sm:text-xl md:text-2xl text-black font-primary font-semibold mb-1 sm:mb-2">
           {memberName}
         </p>
-        <p class="text-lg font-medium text-black/50 font-primary">
+        <p className="text-sm sm:text-base md:text-lg font-medium text-black/50 font-primary">
           {memberRole}
         </p>
       </div>

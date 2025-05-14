@@ -16,6 +16,7 @@ import ManageProjects from "../components/Admin/ManageLaunches";
 import ManageUsers from "../components/Admin/ManageUsers";
 import ManageTestimonials from "../components/Admin/ManageTestimonials";
 import ProjectDetails from "../components/Portfolio/ProjectDetails";
+import UserSettings from "../components/UserSettings/UserSettings";
 
 export const routes = createBrowserRouter([
   {
@@ -33,6 +34,14 @@ export const routes = createBrowserRouter([
       { path: "about-us", element: <AboutUs /> },
       { path: "testimonials", element: <TestimonialsPage /> },
       { path: "test", element: <ManageServices /> },
+      {
+        path: "user-settings",
+        element: (
+          <ProtectedRoute>
+            <UserSettings />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
   {
