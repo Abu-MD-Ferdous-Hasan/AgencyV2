@@ -35,6 +35,7 @@ export default function SignIn() {
     },
     onSuccess: (data) => {
       login(data.accessToken, data.userId);
+      localStorage.setItem("profileImage", data.profileImage);
       toast.success(data.message);
       navigate("/");
     },

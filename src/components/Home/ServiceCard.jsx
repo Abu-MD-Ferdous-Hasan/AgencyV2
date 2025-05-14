@@ -20,7 +20,7 @@ export default function ServiceCard({ icon, serviceName, description }) {
     }
   }, [icon]);
   return (
-    <div className="flex justify-items-start w-full">
+    <div className="flex justify-items-start w-full h-[250px] md:h-[300px]">
       {/* <!-- service block --> */}
       <div className="px-5 py-8 bg-primary transform transition duration-300 ease-in-out hover:-translate-y-2 rounded-lg border border-white">
         <div className="inline-block text-bgColor mb-4">

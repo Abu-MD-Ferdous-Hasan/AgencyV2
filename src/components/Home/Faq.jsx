@@ -36,81 +36,40 @@ export default function Faq() {
     },
   ];
   return (
-    <>
-      {/* component  */}
-      <section className="text-gray-700">
-        <div className="container px-5 py-24 mx-auto">
-          <div className="text-center mb-20">
-            <h1 className="sm:text-5xl text-2xl font-primary font-semibold text-center title-font text-secondary mb-4">
-              Frequently Asked Question
-            </h1>
-            <p className="font-medium text-lg text-gray-500 leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
-              The most common questions about how our business works and what
-              can do for you.
-            </p>
-          </div>
-          <div className="flex flex-col items-center justify-center gap-5 lg:w-full sm:mx-auto sm:mb-2 -mx-2">
-            {/* <div className="w-full lg:w-1/2  px-4 py-2"> */}
-            {/* <Transition transition={true}> */}
-            {frequentQuestions.map((item, idx) => (
-              <Disclosure
-                key={idx}
-                as="div"
-                defaultOpen={idx === 0}
-                className="p-6 bg-bgColor rounded-2xl w-2/3"
-              >
-                <DisclosureButton className="group flex w-full items-center justify-between">
-                  <span className="text-sm/6 font-medium text-gray-600 group-data-[hover]:text-primary">
-                    {item.question}
-                  </span>
-                  <ChevronDownIcon className="size-5 fill-primary/60 group-data-[hover]:fill-black/50 group-data-[open]:rotate-180" />
-                </DisclosureButton>
-                <DisclosurePanel className="mt-2 h-52 text-sm/5 text-primary">
-                  {item.answer}
-                </DisclosurePanel>
-              </Disclosure>
-            ))}
-
-            {/* </Transition> */}
-            {/* </div>
-            <div className="w-full lg:w-1/2 px-4 py-2">
-              <details className="mb-4">
-                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
-                  Can I change the domain you give me?
-                </summary>
-
-                <span className="px-4 py-2 duration-300 ease-in-out">
-                  Laboris qui labore cillum culpa in sunt quis sint veniam.
-                  Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
-                  minim velit nostrud pariatur culpa magna in aute.
-                </span>
-              </details>
-              <details className="mb-4 duration-300 ease-in-out">
-                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
-                  How many sites I can create at once?
-                </summary>
-
-                <span className="px-4 py-2 duration-300 ease-in-out">
-                  Laboris qui labore cillum culpa in sunt quis sint veniam.
-                  Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
-                  minim velit nostrud pariatur culpa magna in aute.
-                </span>
-              </details>
-              <details className="mb-4 duration-300 ease-in-out">
-                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
-                  How can I communicate with you?
-                </summary>
-
-                <span className="px-4 py-2 duration-300 ease-in-out">
-                  Laboris qui labore cillum culpa in sunt quis sint veniam.
-                  Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
-                  minim velit nostrud pariatur culpa magna in aute.
-                </span>
-              </details>
-            </div> */}
-          </div>
+    <section className="py-12 sm:py-16 lg:py-20">
+      <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <h1 className="text-2xl sm:text-3xl lg:text-5xl font-primary font-semibold text-secondary mb-4">
+            Frequently Asked Questions
+          </h1>
+          <p className="text-base sm:text-lg text-gray-500 leading-relaxed max-w-2xl mx-auto">
+            The most common questions about how our business works and what can
+            do for you.
+          </p>
         </div>
-      </section>
-    </>
+        <div className="flex flex-col items-center space-y-4 sm:space-y-6">
+          {frequentQuestions.map((item, idx) => (
+            <Disclosure
+              key={idx}
+              as="div"
+              defaultOpen={idx === 0}
+              className="w-full max-w-3xl bg-bgColor rounded-2xl"
+            >
+              <DisclosureButton className="w-full px-6 py-4 sm:py-5 flex items-center justify-between text-left">
+                <span className="text-sm sm:text-base font-medium text-gray-600 pr-4 group-data-[hover]:text-primary">
+                  {item.question}
+                </span>
+                <ChevronDownIcon className="flex-shrink-0 w-5 h-5 fill-primary/60 group-data-[hover]:fill-black/50 group-data-[open]:rotate-180 transition-transform duration-200" />
+              </DisclosureButton>
+              <DisclosurePanel className="px-6 pb-4 sm:pb-5">
+                <p className="text-sm sm:text-base text-primary">
+                  {item.answer}
+                </p>
+              </DisclosurePanel>
+            </Disclosure>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

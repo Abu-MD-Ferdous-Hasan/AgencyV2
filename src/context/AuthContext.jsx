@@ -31,8 +31,7 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(true);
         setUser(response.user || { id: userId });
       } else {
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("userId");
+        localStorage.clear();
         setIsAuthenticated(false);
         setUser(null);
       }
@@ -56,8 +55,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("userId");
+    localStorage.clear();
     setIsAuthenticated(false);
     setUser(null);
   };

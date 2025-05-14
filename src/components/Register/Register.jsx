@@ -7,11 +7,18 @@ import { icons } from "../../utilities/svgs";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import toast, { Toaster } from "react-hot-toast";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Register() {
   const navigate = useNavigate();
   const [selectedServices, setSelectedServices] = useState([]);
   const [selectedGender, setSelectedGender] = useState("");
+  const { login } = useAuth();
+
+  const profileImage =
+    selectedGender === "male"
+      ? "https://i.postimg.cc/9XSg8kYC/male-avatar.jpg"
+      : "https://i.postimg.cc/4N9Lr1Wt/female-avatar.jpg";
   const {
     register,
     formState: { errors },
@@ -38,6 +45,8 @@ export default function Register() {
     onSuccess: (data) => {
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("userId", data.userId);
+      localStorage.setItem("profileImage", profileImage);
+      login(data.accessToken, data.userId);
       toast.success(data.message || "Registration successful!");
       navigate("/");
     },
@@ -68,6 +77,7 @@ export default function Register() {
       ...data,
       gender: selectedGender,
       services: selectedServices,
+      profileImage: profileImage,
     };
 
     // console.log(formData);
@@ -230,7 +240,7 @@ export default function Register() {
                 </div>
               ))}
             </div>
-            {!selectedGender && errors.gender && (
+            {!selectedGender && (
               <p className="text-red-500 text-sm text-left mt-1">
                 Please select your gender
               </p>

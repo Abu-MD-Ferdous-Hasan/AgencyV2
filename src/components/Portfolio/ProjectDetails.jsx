@@ -12,7 +12,7 @@ export default function ProjectDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { data: project, isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["project", id],
     queryFn: () => apiService.get(`projects/${id}`),
   });
@@ -25,7 +25,7 @@ export default function ProjectDetails() {
     );
   }
 
-  console.log(project);
+  const project = data?.data;
 
   if (!project) return null;
 

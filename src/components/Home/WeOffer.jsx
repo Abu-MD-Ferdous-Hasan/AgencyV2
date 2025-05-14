@@ -1,76 +1,46 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
-import {
-  ChatBubbleLeftEllipsisIcon,
-  DevicePhoneMobileIcon,
-  GlobeAltIcon,
-  MegaphoneIcon,
-  WrenchScrewdriverIcon,
-} from "@heroicons/react/24/outline";
-import React, { Suspense, useEffect } from "react";
+import React from "react";
 import ServiceCard from "./ServiceCard";
-import ServiceCardPlaceholder from "./ServiceCardPLaceholder";
 import { useQuery } from "@tanstack/react-query";
+import ProductCardPlaceholder from "./ServiceCardPLaceholder";
+import { apiService } from "../../utilities/apiService";
 
 export default function WeOffer() {
-  const serverUrl = import.meta.env.VITE_server;
-
-  const getServices = async () => {
-    const response = await fetch(`${serverUrl}/digital-services`);
-    return await response.json();
-  };
-
   const {
     isPending,
     error,
-    data: services,
+    data: products,
     isFetching,
   } = useQuery({
-    queryKey: ["getDigitalServices"],
-    queryFn: getServices,
+    queryKey: ["getProducts"],
+    queryFn: () => apiService.get("products"),
   });
+
   if (error) return "An error has occurred: " + error.message;
   return (
-    <>
-      <div
-        id="services"
-        className="relative pt-20 pb-8 md:pb-20 md:pt-16 bg-primary"
-      >
-        <div className="container xl:max-w-6xl mx-auto">
-          {/* <!-- Heading start --> */}
-          <header className="text-center mx-auto mb-12 lg:px-20">
-            <h2 className="text-4xl font-primary leading-normal mb-2 font-semibold text-bgColor">
-              What We Do
-            </h2>
-            <p className="text-gray-200 leading-relaxed font-light text-xl mx-auto pb-2">
-              Streamline your digital presence with our comprehensive suite of
-              services designed to elevate your business in the digital age.
-            </p>
-          </header>
-          {/* <!-- End heading --> */}
-          {/* <!-- row --> */}
-          <div className="grid grid-cols-3 gap-2 w-full">
-            {isFetching
-              ? [...Array(6)].map((elm, idx) => (
-                  <ServiceCardPlaceholder key={idx} />
-                ))
-              : services.map((elm, idx) => {
-                  return (
-                    <Suspense
-                      key={elm.serviceName + idx}
-                      fallback={<ServiceCardPlaceholder />}
-                    >
-                      <ServiceCard
-                        serviceName={elm?.serviceName}
-                        icon={elm?.icon}
-                        description={elm?.description}
-                      />
-                    </Suspense>
-                  );
-                })}
-          </div>
-          {/* <!-- end row --> */}
-        </div>
+    <section className="py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-24 bg-bg mx-auto text-center min-h-screen">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-primary font-bold">
+          Services we provide
+        </h1>
+        <h5 className="font-medium font-primary text-sm sm:text-base md:text-lg text-black/80 mt-2 sm:mt-2.5 max-w-2xl mx-auto">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
+          illum sed eaque voluptatibus dolor!
+        </h5>
       </div>
-    </>
+      <div className="max-w-7xl mx-auto mt-6 sm:mt-8 md:mt-12 lg:mt-16 mb-8 sm:mb-12 md:mb-16 lg:mb-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10 place-items-center">
+        {isFetching
+          ? [...Array(4)].map((e, idx) => <ProductCardPlaceholder key={idx} />)
+          : products
+              ?.slice(0, 6)
+              ?.map(({ icon, productName, productDetails }, idx) => (
+                <ServiceCard
+                  key={idx}
+                  icon={icon}
+                  serviceName={productName}
+                  description={productDetails}
+                />
+              ))}
+      </div>
+    </section>
   );
 }

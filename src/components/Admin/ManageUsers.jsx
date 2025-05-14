@@ -22,11 +22,10 @@ export default function ManageUsers() {
 
   return (
     <CRUDTable
-      endpoint="all-users"
+      endpoint="users"
       useToken={true}
       columns={columns}
       title="Users"
     />
   );
 }
-// {"_id":{"$oid":"67d1f093f09232a35cc16c03"},"firstName":"Abu Md","lastName":"Ferdous Hasan","email":"Fardinh39@gmail.com","password":"4422abcd","services":["App Design","Other"],"createdAt":{"$date":{"$numberLong":"1741811859874"}},"role":"admin"}
