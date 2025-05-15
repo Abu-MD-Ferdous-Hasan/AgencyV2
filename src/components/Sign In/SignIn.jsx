@@ -77,6 +77,7 @@ export default function SignIn() {
               </label>
               <div className="mt-2">
                 <input
+                  id="email"
                   {...register("email", {
                     required: "Email is required",
                     pattern: {
@@ -114,6 +115,7 @@ export default function SignIn() {
               </div>
               <div className="mt-2">
                 <input
+                  id="password"
                   {...register("password", {
                     required: "Password is required",
                     minLength: {

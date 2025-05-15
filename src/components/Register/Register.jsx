@@ -125,6 +125,7 @@ export default function Register() {
                 First Name
               </label>
               <input
+                id="firstName"
                 {...register("firstName", {
                   required: "First name is required",
                   minLength: {
@@ -149,6 +150,7 @@ export default function Register() {
                 Last Name
               </label>
               <input
+                id="lastName"
                 {...register("lastName", {
                   required: "Last name is required",
                   minLength: {
@@ -175,6 +177,7 @@ export default function Register() {
                 Email
               </label>
               <input
+                id="email"
                 {...register("email", {
                   required: "Email is required",
                   pattern: {
@@ -199,6 +202,7 @@ export default function Register() {
                 Password
               </label>
               <input
+                id="password"
                 {...register("password", {
                   required: "Password is required",
                   minLength: {
